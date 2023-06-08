@@ -3,25 +3,18 @@ package allTestCases;
 import static org.testng.Assert.assertEquals;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class OlympusDemosite {
+public class OlympusDemosite extends WebDriverManagerBase {
 	private static WebDriver driver;
 	private static String baseURL = "https://www.olympus-ims.com/en/login/";
 	private static String emailID = "admin@abc.com";
 	private static String password = "Admin@123";
 
-	@BeforeClass
-	public void setup() {
-		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\Drivers\\chromedriver.exe");
-		driver = new ChromeDriver();
-	}
-
-	@Test(priority = 1)
+	@Test(priority = 1, description = "Validate empty EmailId")
 	public void emptyEmailID() {
+		driver = getChromeDriver();
 		driver.get(baseURL);
 		driver.manage().window().maximize();
 		driver.findElement(By.id("inputWidth")).sendKeys("");
@@ -35,7 +28,8 @@ public class OlympusDemosite {
 		}
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 2, description = "Validate empty Password")
+
 	public void emptyPassword() {
 		driver.get(baseURL);
 		driver.manage().window().maximize();
@@ -50,7 +44,7 @@ public class OlympusDemosite {
 		}
 	}
 
-	@Test(priority = 3)
+	@Test(priority = 3, description = "Validate empty EmailID and Password")
 	public void emptyEmailIDPassword() {
 		driver.get(baseURL);
 		driver.manage().window().maximize();
@@ -66,7 +60,7 @@ public class OlympusDemosite {
 		}
 	}
 
-	@Test(priority = 4)
+	@Test(priority = 4, description = "Validate Valid EmailID and Password")
 	public void validEmaiIDPassword() {
 		driver.get(baseURL);
 		driver.manage().window().maximize();
