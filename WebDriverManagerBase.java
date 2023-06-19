@@ -7,22 +7,29 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class WebDriverManagerBase {
-	
-	public WebDriver getChromeDriver() {
-		WebDriverManager.chromedriver().setup();
-		WebDriver driver = new ChromeDriver();
-		return driver;
-	}
-
-	public WebDriver getEdgeDriver() {
-		WebDriverManager.edgedriver().setup();
-		WebDriver driver = new EdgeDriver();
-		return driver;
-	}
-
-	public WebDriver getFirefoxDriver() {
-		WebDriverManager.firefoxdriver().setup();
-		WebDriver driver = new FirefoxDriver();
+	public WebDriver getBrowser(String browserType) {
+		WebDriver driver;
+		switch (browserType) {
+		case "firefox":
+			WebDriverManager.firefoxdriver().setup();
+			driver = new FirefoxDriver();
+			driver.manage().window().maximize();
+			break;
+		case "chrome":
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver();
+			driver.manage().window().maximize();
+			break;
+		case "edge":
+			WebDriverManager.edgedriver().setup();
+			driver = new EdgeDriver();
+			driver.manage().window().maximize();
+			break;
+		default:
+			System.out.println("browser : " + browserType + " is invalid, Launching Chrome as browser of choice..");
+			driver = new ChromeDriver();
+			driver.manage().window().maximize();
+		}
 		return driver;
 	}
 }
