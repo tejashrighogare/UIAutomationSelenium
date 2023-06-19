@@ -34,7 +34,6 @@ public class OlympusDemosite extends WebDriverManagerBase {
 
 	@Test(priority = 2, description = "Validate empty Password")
 	public void emptyPassword() {
-
 		String readEmailId = ConfigReader.getPropertyValue("emailID");
 		driver.findElement(By.id("inputWidth")).sendKeys(readEmailId);
 		driver.findElement(By.cssSelector("input[type = 'password']")).sendKeys();
