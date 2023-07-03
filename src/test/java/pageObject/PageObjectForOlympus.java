@@ -1,10 +1,8 @@
 package pageObject;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 public class PageObjectForOlympus {
@@ -19,7 +17,7 @@ public class PageObjectForOlympus {
 	public WebElement email;
 	@FindBy(css = "input[type = 'password']")
 	public WebElement password;
-	@FindBy(how = How.CSS, using = "input[type = 'submit']")
+	@FindBy(css= "input[type = 'submit']")
 	public WebElement signInButton;
 
 	public void setEmailid(String setEmailid) {
