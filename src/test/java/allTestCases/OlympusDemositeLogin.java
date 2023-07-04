@@ -15,7 +15,7 @@ import webDriver.WebDriverManagerBrowser;
 public class OlympusDemositeLogin extends WebDriverManagerBrowser {
 	private static WebDriver driver;
 	private String url;
-	PageObjectForOlympus pageObject;
+	private PageObjectForOlympus pageObject;
 
 	@BeforeClass
 	public void setUp() {
@@ -27,10 +27,10 @@ public class OlympusDemositeLogin extends WebDriverManagerBrowser {
 
 	@Test(priority = 1, description = "Validate empty EmailId")
 	public void emptyEmailID() {
-		pageObject.setEmailid("");
+		pageObject.sendEmaiId("");
 		String readPassword = ConfigReader.getPropertyValue("password");
-		pageObject.setPassword(readPassword);
-		pageObject.signIn();
+		pageObject.SendPassword(readPassword);
+		pageObject.signInButton();
 		String expectedUrl = driver.getCurrentUrl();
 		if (url.equals(expectedUrl)) {
 			String getEmailID = pageObject.email.getText();
@@ -42,9 +42,9 @@ public class OlympusDemositeLogin extends WebDriverManagerBrowser {
 	@Test(priority = 2, description = "Validate empty Password")
 	public void emptyPassword() {
 		String readEmailId = ConfigReader.getPropertyValue("emailID");
-		pageObject.setEmailid(readEmailId);
-		pageObject.setPassword("");
-		pageObject.signIn();
+		pageObject.sendEmaiId(readEmailId);
+		pageObject.SendPassword("");
+		pageObject.signInButton();
 		String expectedUrl = driver.getCurrentUrl();
 		if (url.equals(expectedUrl)) {
 			String getPassword = pageObject.password.getText();
@@ -55,9 +55,9 @@ public class OlympusDemositeLogin extends WebDriverManagerBrowser {
 
 	@Test(priority = 3, description = "Validate empty EmailID and Password")
 	public void emptyEmailIDPassword() {
-		pageObject.setEmailid("");
-		pageObject.setPassword("");
-		pageObject.signIn();
+		pageObject.sendEmaiId("");
+		pageObject.SendPassword("");
+		pageObject.signInButton();
 		String expectedUrl = driver.getCurrentUrl();
 		if (url.equals(expectedUrl)) {
 			String getEmailID = pageObject.email.getText();
@@ -70,10 +70,10 @@ public class OlympusDemositeLogin extends WebDriverManagerBrowser {
 	@Test(priority = 4, description = "Validate Valid EmailID and Password")
 	public void validEmaiIDPassword() {
 		String readEmailId = ConfigReader.getPropertyValue("emailID");
-		pageObject.setEmailid(readEmailId);
+		pageObject.sendEmaiId(readEmailId);
 		String readPassword = ConfigReader.getPropertyValue("password");
-		pageObject.setPassword(readPassword);
-		pageObject.signIn();
+		pageObject.SendPassword(readPassword);
+		pageObject.signInButton();
 		String expectedUrl = "https://www.olympus-ims.com/en/login/?";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);

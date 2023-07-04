@@ -7,8 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class PageObjectForOlympus {
 	WebDriver localDriver;
-
-	public PageObjectForOlympus(WebDriver remoteDriver) {
+public PageObjectForOlympus(WebDriver remoteDriver) {
 		localDriver = remoteDriver;
 		PageFactory.initElements(remoteDriver, this);
 	}
@@ -17,18 +16,18 @@ public class PageObjectForOlympus {
 	public WebElement email;
 	@FindBy(css = "input[type = 'password']")
 	public WebElement password;
-	@FindBy(css= "input[type = 'submit']")
+	@FindBy(css = "input[type = 'submit']")
 	public WebElement signInButton;
 
-	public void setEmailid(String setEmailid) {
+	public void sendEmaiId(String setEmailid) {
 		email.sendKeys(setEmailid);
 	}
 
-	public void setPassword(String setPassword) {
+	public void SendPassword(String setPassword) {
 		password.sendKeys(setPassword);
 	}
 
-	public void signIn() {
+	public void signInButton() {
 		signInButton.click();
 	}
 }
