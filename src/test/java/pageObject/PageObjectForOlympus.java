@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class PageObjectForOlympus {
-	WebDriver localDriver;
+	private WebDriver localDriver;
 
 	public PageObjectForOlympus(WebDriver remoteDriver) {
 		localDriver = remoteDriver;
