@@ -7,7 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class PageObjectForOlympus {
 	WebDriver localDriver;
-public PageObjectForOlympus(WebDriver remoteDriver) {
+
+	public PageObjectForOlympus(WebDriver remoteDriver) {
 		localDriver = remoteDriver;
 		PageFactory.initElements(remoteDriver, this);
 	}
