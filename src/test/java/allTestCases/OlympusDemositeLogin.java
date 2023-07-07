@@ -9,17 +9,17 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import configurationReader.ConfigReader;
+import drivres.Browsers;
 import pageObject.PageObjectForOlympus;
-import webDriver.WebDriverManagerBrowser;
 
-public class OlympusDemositeLogin extends WebDriverManagerBrowser {
-	private static WebDriver driver;
+public class OlympusDemositeLogin extends Browsers {
+	private WebDriver driver;
 	private String url;
 	private PageObjectForOlympus pageObject;
 
 	@BeforeClass
 	public void setUp() {
-		driver = getBrowser("edge");
+		driver = getBrowser("chrome");
 		url = ConfigReader.getPropertyValue("baseURL");
 		driver.get(url);
 		pageObject = new PageObjectForOlympus(driver);
@@ -28,8 +28,7 @@ public class OlympusDemositeLogin extends WebDriverManagerBrowser {
 	@Test(priority = 1, description = "Validate empty EmailId")
 	public void emptyEmailID() {
 		pageObject.sendEmaiId("");
-		String readPassword = ConfigReader.getPropertyValue("password");
-		pageObject.SendPassword(readPassword);
+		pageObject.SendPassword("QWRtaW5AMTIz");
 		pageObject.signInButton();
 		String expectedUrl = driver.getCurrentUrl();
 		if (url.equals(expectedUrl)) {
@@ -39,7 +38,7 @@ public class OlympusDemositeLogin extends WebDriverManagerBrowser {
 		}
 	}
 
-	@Test(priority = 2, description = "Validate empty Password")
+@Test(priority = 2, description = "Validate empty Password")
 	public void emptyPassword() {
 		String readEmailId = ConfigReader.getPropertyValue("emailID");
 		pageObject.sendEmaiId(readEmailId);
@@ -71,8 +70,7 @@ public class OlympusDemositeLogin extends WebDriverManagerBrowser {
 	public void validEmaiIDPassword() {
 		String readEmailId = ConfigReader.getPropertyValue("emailID");
 		pageObject.sendEmaiId(readEmailId);
-		String readPassword = ConfigReader.getPropertyValue("password");
-		pageObject.SendPassword(readPassword);
+		pageObject.SendPassword("QWRtaW5AMTIz");
 		pageObject.signInButton();
 		String expectedUrl = "https://www.olympus-ims.com/en/login/?";
 		String actualUrl = driver.getCurrentUrl();
