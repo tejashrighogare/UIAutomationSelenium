@@ -12,10 +12,10 @@ import configurationReader.ConfigReader;
 import getdrivers.GetBrowsers;
 import pageObject.PageObjectForOlympus;
 
-public class OlympusDemositeLogin extends GetBrowsers {
+public class OlympusDemositeLoginPage extends GetBrowsers {
 	private WebDriver driver;
 	private String url;
-	PageObjectForOlympus pageObject;
+	private PageObjectForOlympus pageObject;
 
 	@BeforeClass
 	public void setUp() {
@@ -60,10 +60,10 @@ public class OlympusDemositeLogin extends GetBrowsers {
 		}
 	}
 
-	// @Test(priority = 4, description = "Validate Valid EmailID and Password")
+	@Test(priority = 4, description = "Validate Valid EmailID and Password")
 	public void validEmaiIDPassword() {
-		String readEmailId = ConfigReader.getPropertyValue("emailID");
-		pageObject.sendEmailPassword(readEmailId, "QWRtaW5AMTIz");
+		String readEmailid = ConfigReader.getPropertyValue("emailID");
+		pageObject.sendEmailPassword(readEmailid, "QWRtaW5AMTIz");
 		String expectedUrl = ConfigReader.getPropertyValue("expectedwebsiteURL");
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
