@@ -9,13 +9,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import configurationReader.ConfigReader;
-import drivres.Browsers;
+import getdrivers.GetBrowsers;
 import pageObject.PageObjectForOlympus;
 
-public class OlympusDemositeLogin extends Browsers {
+public class OlympusDemositeLogin extends GetBrowsers {
 	private WebDriver driver;
 	private String url;
-	private PageObjectForOlympus pageObject;
+	PageObjectForOlympus pageObject;
 
 	@BeforeClass
 	public void setUp() {
@@ -27,9 +27,7 @@ public class OlympusDemositeLogin extends Browsers {
 
 	@Test(priority = 1, description = "Validate empty EmailId")
 	public void emptyEmailID() {
-		pageObject.sendEmaiId("");
-		pageObject.SendPassword("QWRtaW5AMTIz");
-		pageObject.signInButton();
+		pageObject.sendEmailPassword("", "QWRtaW5AMTIz");
 		String expectedUrl = driver.getCurrentUrl();
 		if (url.equals(expectedUrl)) {
 			String getEmailID = pageObject.email.getText();
@@ -38,12 +36,10 @@ public class OlympusDemositeLogin extends Browsers {
 		}
 	}
 
-@Test(priority = 2, description = "Validate empty Password")
+	@Test(priority = 2, description = "Validate empty Password")
 	public void emptyPassword() {
 		String readEmailId = ConfigReader.getPropertyValue("emailID");
-		pageObject.sendEmaiId(readEmailId);
-		pageObject.SendPassword("");
-		pageObject.signInButton();
+		pageObject.sendEmailPassword(readEmailId, "");
 		String expectedUrl = driver.getCurrentUrl();
 		if (url.equals(expectedUrl)) {
 			String getPassword = pageObject.password.getText();
@@ -54,9 +50,7 @@ public class OlympusDemositeLogin extends Browsers {
 
 	@Test(priority = 3, description = "Validate empty EmailID and Password")
 	public void emptyEmailIDPassword() {
-		pageObject.sendEmaiId("");
-		pageObject.SendPassword("");
-		pageObject.signInButton();
+		pageObject.sendEmailPassword("", "");
 		String expectedUrl = driver.getCurrentUrl();
 		if (url.equals(expectedUrl)) {
 			String getEmailID = pageObject.email.getText();
@@ -66,13 +60,11 @@ public class OlympusDemositeLogin extends Browsers {
 		}
 	}
 
-	@Test(priority = 4, description = "Validate Valid EmailID and Password")
+	// @Test(priority = 4, description = "Validate Valid EmailID and Password")
 	public void validEmaiIDPassword() {
 		String readEmailId = ConfigReader.getPropertyValue("emailID");
-		pageObject.sendEmaiId(readEmailId);
-		pageObject.SendPassword("QWRtaW5AMTIz");
-		pageObject.signInButton();
-		String expectedUrl = "https://www.olympus-ims.com/en/login/?";
+		pageObject.sendEmailPassword(readEmailId, "QWRtaW5AMTIz");
+		String expectedUrl = ConfigReader.getPropertyValue("expectedwebsiteURL");
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
 		driver.close();

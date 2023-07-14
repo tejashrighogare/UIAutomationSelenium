@@ -26,7 +26,7 @@ public class PageObjectForOlympus {
 	public WebElement signInButton;
 
 	public void sendEmaiId(String setEmailid) {
-		email.sendKeys(setEmailid);
+			email.sendKeys(setEmailid);
 	}
 
 	public void SendPassword(String setPassword) {
@@ -38,4 +38,10 @@ public class PageObjectForOlympus {
 	public void signInButton() {
 		signInButton.click();
 	}
+	public void sendEmailPassword(String emailID, String setPassword)
+	{
+		sendEmaiId(emailID);
+		SendPassword(setPassword);
+		signInButton();
+		}
 }
